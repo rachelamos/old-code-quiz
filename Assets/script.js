@@ -1,18 +1,44 @@
 // Code will build the welcome message this section will build the variables
-// var timerCount = 
 var timerEl = document.querySelector(".timer-count");
-var startButton = document.querySelector(".start-button");
+var startButton = document.querySelector("#start-button");
 var win = document.querySelector(".score");
-// var isWin = false;
 var timerCount = 60;
-var index = 0;
+var questionIndex = 0;
+
+var questions = [
+{
+  question: "All of the following are data types except:",
+  choices: ["strings", "numbers", "prompts", "booleans"],
+  answer: "prompts"
+},
+{
+  question: "API stands for:",
+  choices: ["Applying Programming Interface", "Application Programming Interface", "Application Prototype Interwebs", "Applying Programing Interwebs"],
+  answer: "Application Programming Interface"
+},
+{
+  question: "If you try to change the value of a const variable, you will:",
+  choices: ["receive a ReferenceError", "receive a TypeError", "successfully change the value of the const variable", "receive a ReferenceError and a TypeError"],
+  answer: "receive a TypeError"
+},
+{
+  question: "______ is used during development and debugging but is usually not seen by the user.",
+  choices: ["alert", "function", "console.log", "for loops"],
+  answer: "console.log"
+},
+{
+  question: "Variable names have a few rules. For instance, they:",
+  choices: ["can start with a number", "are not case-sensitive", "can be a reserved keyword", "should be meaningful"],
+  answer: "should be meaningful"
+}
+];
 
 
 function startTimer() {
     // Sets timer
-    timer = setInterval(function() {
+    var timer = setInterval(function() {
       timerCount--;
-      timerElement.innerText = timerCount;
+      timerEl.textContent = timerCount;
     //   if (timerCount >= 0) {
     //     // Clears interval
     //     clearInterval(timer);
@@ -31,7 +57,7 @@ function startTimer() {
 
 // hide start button, then show questions and available answer choices
   startButton.addEventListener("click", function() {
-      startTimer()
+      startTimer();
   });
 
 // as user selects answer, hide question/answer, show next question/answer; keeping score with each selection
