@@ -2,8 +2,11 @@
 var timerEl = document.querySelector(".timer-count");
 var startButton = document.querySelector("#start-button");
 var win = document.querySelector(".score");
-var timerCount = 60;
+var timerCount = 10;
 var questionIndex = 0;
+var listCreate = document.createElement("#ul");
+var questionsDiv = document.createElement("#questionsDiv");
+// var questionsDiv = document.querySelector("#questionDiv")
 
 var questions = [
 {
@@ -38,7 +41,7 @@ function startTimer() {
     // Sets timer
     var timer = setInterval(function() {
       timerCount--;
-      timerEl.textContent = timerCount;
+      timerEl.textContent = "Time Left: " + timerCount;
     //   if (timerCount >= 0) {
     //     // Clears interval
     //     clearInterval(timer);
@@ -49,16 +52,37 @@ function startTimer() {
           clearInterval(timer);
       }
     }, 1000);
-  }
+  };
 
 //   function loseGame() {
       
 //   }
 
 // hide start button, then show questions and available answer choices
+ 
+
+  function render(questionIndex) {
+    questionsDiv.innerHTML = "";
+    listCreate.innerHTML = "";
+    for (var i = 0; i < questions.length; i++) {
+      var playerQuestion = questions[questionIndex].title;
+      var playerChoices = questions[questionIndex].choices;
+      questionsDiv.textContent = playerQuestion;
+    };
+    playerChoices.forEach(function(newItem) {
+      var listItem = document.createElement("li");
+      listItem.textContent = newItem;
+      questionsDiv.appendChild(listCreate);
+      listCreate.appendChild(newItem);
+      newItem.addEventListener("click", (check));
+    })
+  };
+
   startButton.addEventListener("click", function() {
-      startTimer();
-  });
+    startTimer();
+    render(questionIndex);
+});
+  
 
 // as user selects answer, hide question/answer, show next question/answer; keeping score with each selection
 // function that shows first question + answer choices; index of questions
