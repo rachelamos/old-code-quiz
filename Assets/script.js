@@ -4,12 +4,11 @@ var startButton = document.querySelector("#start-button");
 var win = document.querySelector(".score");
 var timerCount = 10;
 var questionIndex = 0;
-var listCreate = document.createElement("#ul");
-var questionsDiv = document.createElement("#questionsDiv");
+// var listCreate = document.createElement("#ul");
+// var questionsDiv = document.createElement("#questionsDiv");
 // var questionsDiv = document.querySelector("#questionDiv")
 
-var questions = [
-{
+var questions = [ {
   question: "All of the following are data types except:",
   choices: ["strings", "numbers", "prompts", "booleans"],
   answer: "prompts"
@@ -61,22 +60,22 @@ function startTimer() {
 // hide start button, then show questions and available answer choices
  
 
-  function render(questionIndex) {
-    questionsDiv.innerHTML = "";
-    listCreate.innerHTML = "";
-    for (var i = 0; i < questions.length; i++) {
-      var playerQuestion = questions[questionIndex].title;
-      var playerChoices = questions[questionIndex].choices;
-      questionsDiv.textContent = playerQuestion;
-    };
-    playerChoices.forEach(function(newItem) {
-      var listItem = document.createElement("li");
-      listItem.textContent = newItem;
-      questionsDiv.appendChild(listCreate);
-      listCreate.appendChild(newItem);
-      newItem.addEventListener("click", (check));
-    })
-  };
+  // function render(questionIndex) {
+  //   questionsDiv.innerHTML = "";
+  //   listCreate.innerHTML = "";
+  //   for (var i = 0; i < questions.length; i++) {
+  //     var playerQuestion = questions[questionIndex].title;
+  //     var playerChoices = questions[questionIndex].choices;
+  //     questionsDiv.textContent = playerQuestion;
+  //   };
+  //   playerChoices.forEach(function(newItem) {
+  //     var listItem = document.createElement("li");
+  //     listItem.textContent = newItem;
+  //     questionsDiv.appendChild(listCreate);
+  //     listCreate.appendChild(newItem);
+  //     newItem.addEventListener("click", (check));
+  //   })
+  // };
 
   startButton.addEventListener("click", function() {
     startTimer();
