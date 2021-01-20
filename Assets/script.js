@@ -2,7 +2,7 @@
 var timerEl = document.querySelector(".timer-count");
 var startButton = document.querySelector("#start-button");
 var win = document.querySelector(".score");
-var timerCount = 3;
+var timerCount = 75;
 var questionIndex = 0;
 var questionsDiv = document.querySelector("#questionDiv");
 var uList = document.createElement("#ul");
@@ -43,6 +43,7 @@ function startTimer() {
 
       if (timerCount === 0) {
           clearInterval(timer);
+          timerEl.textContent = "Time's up!";
           // function for end of game (including content)
       }
     }, 1000);
@@ -81,10 +82,10 @@ function assess(event) {
       createDiv.setAttribute("id", "createDiv");
       if (element.textContent == questions[questionIndex].answer) {
           score++;
-          createDiv.textContent = "Correct! The answer is:  " + questions[questionIndex].answer;
+          createDiv.textContent = "Correct!";
       } else {
           secondsLeft = secondsLeft - incorrect;
-          createDiv.textContent = "Wrong! The correct answer is:  " + questions[questionIndex].answer;
+          createDiv.textContent = "Incorrect";
       }
 
   }
@@ -93,16 +94,7 @@ function assess(event) {
   // when at end question, call function to
 
 startButton.addEventListener("click", function() {
-  startTimer();
-  // add html hiding function
-  // var container = document.getElementById("container");
-  // if (container.style.display === "none") {
-  //   container.style.display === "block";
-  // } else {
-  //   container.style.display === "none";
-  }
-  render(questionsDiv)
-)};
+};
   
 // To begin quiz, hide html first (only want to do this once, so not within the render function) **within eventListener for startButton To do this, I first need to hide the current content on my webpage. *don't use just a string to make the html content go away -- read toggle docm that Amanda sent
 
