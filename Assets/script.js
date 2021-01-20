@@ -2,11 +2,10 @@
 var timerEl = document.querySelector(".timer-count");
 var startButton = document.querySelector("#start-button");
 var win = document.querySelector(".score");
-var timerCount = 10;
+var timerCount = 3;
 var questionIndex = 0;
-// var listCreate = document.createElement("#ul");
-// var questionsDiv = document.createElement("#questionsDiv");
-// var questionsDiv = document.querySelector("#questionDiv")
+var questionsDiv = document.querySelector("#questionDiv");
+var uList = document.createElement("#ul");
 
 var questions = [ {
   question: "All of the following are data types except:",
@@ -41,11 +40,6 @@ function startTimer() {
     var timer = setInterval(function() {
       timerCount--;
       timerEl.textContent = "Time Left: " + timerCount;
-    //   if (timerCount >= 0) {
-    //     // Clears interval
-    //     clearInterval(timer);
-    //     return
-    //   }
 
       if (timerCount === 0) {
           clearInterval(timer);
@@ -59,47 +53,62 @@ function startTimer() {
 //   }
 
 // hide start button, then show questions and available answer choices
- 
 
-  function render() {
-    questionsDiv.innerHTML = "";
-    listCreate.innerHTML = "";
-    for (var i = 0; i < questions.length; i++) {
-      var playerQuestion = questions[questionIndex].title;
-      var playerChoices = questions[questionIndex].choices;
-      questionsDiv.textContent = playerQuestion;
-    };
-    playerChoices.forEach(function(newItem) {
+
+function render(questionsDiv) {
+  questionsDiv.innerHTML = "";
+  uList.innerHTML = "";
+  for (var i = 0; i < questions.length; i++) {
+      var userQuestion = questions[questionIndex].question;
+      var userChoices = questions[questionIndex].choices;
+      questionsDiv.textContent = userQuestion;
+  }
+  userChoices.forEach(function (newChoices) {
       var listItem = document.createElement("li");
-      listItem.textContent = newItem;
-      questionsDiv.appendChild(listCreate);
-      listCreate.appendChild(newItem);
-      newItem.addEventListener("click", (check));
-    })
-  };
+      listItem.textContent = newChoices;
+      questionsDiv.appendChild(uList);
+      uList.appendChild(listItem);
+      listItem.addEventListener("click", (assess));
+  })
+}
 
-  // when at end question, call function to end game
+function assess(event) {
+  var element = event.target;
 
-  startButton.addEventListener("click", function() {
-    startTimer();
-    // add html hiding function
-    render();
-});
+  if (element.matches("li")) {
+
+      var createDiv = document.createElement("div");
+      createDiv.setAttribute("id", "createDiv");
+      if (element.textContent == questions[questionIndex].answer) {
+          score++;
+          createDiv.textContent = "Correct! The answer is:  " + questions[questionIndex].answer;
+      } else {
+          secondsLeft = secondsLeft - incorrect;
+          createDiv.textContent = "Wrong! The correct answer is:  " + questions[questionIndex].answer;
+      }
+
+  }
+  questionIndex++;
+
+  // when at end question, call function to
+
+startButton.addEventListener("click", function() {
+  startTimer();
+  // add html hiding function
+  // var container = document.getElementById("container");
+  // if (container.style.display === "none") {
+  //   container.style.display === "block";
+  // } else {
+  //   container.style.display === "none";
+  }
+  render(questionsDiv)
+)};
   
 // To begin quiz, hide html first (only want to do this once, so not within the render function) **within eventListener for startButton To do this, I first need to hide the current content on my webpage. *don't use just a string to make the html content go away -- read toggle docm that Amanda sent
 
 // function render to make questions visible. look at toggle documentation; select the first question in my questions variable, index 0,
 
 // function for assessing correct answers an eventListener using Amanda's HTML eventListener documenation to record their choice, compare that with my answer choice. if matches, add html to say "correct", and record points. if doesn't match, add html to say "incorrect", and deduct time. add one each time through to questionIndex and call render again.
-
-// 
-
-
-
-
-
-
-
 
 
 // as user selects answer, hide question/answer, show next question/answer; keeping score with each selection
