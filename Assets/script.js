@@ -11,27 +11,27 @@ var questionIndex = 0;
 var questions = [ {
   question: "All of the following are data types except:",
   choices: ["strings", "numbers", "prompts", "booleans"],
-  answer: "prompts"
+  answer: "prompts",
 },
 {
   question: "API stands for:",
   choices: ["Applying Programming Interface", "Application Programming Interface", "Application Prototype Interwebs", "Applying Programing Interwebs"],
-  answer: "Application Programming Interface"
+  answer: "Application Programming Interface",
 },
 {
   question: "If you try to change the value of a const variable, you will:",
   choices: ["receive a ReferenceError", "receive a TypeError", "successfully change the value of the const variable", "receive a ReferenceError and a TypeError"],
-  answer: "receive a TypeError"
+  answer: "receive a TypeError",
 },
 {
   question: "______ is used during development and debugging but is usually not seen by the user.",
   choices: ["alert", "function", "console.log", "for loops"],
-  answer: "console.log"
+  answer: "console.log",
 },
 {
   question: "Variable names have a few rules. For instance, they:",
   choices: ["can start with a number", "are not case-sensitive", "can be a reserved keyword", "should be meaningful"],
-  answer: "should be meaningful"
+  answer: "should be meaningful",
 }
 ];
 
@@ -49,6 +49,7 @@ function startTimer() {
 
       if (timerCount === 0) {
           clearInterval(timer);
+          // function for end of game (including content)
       }
     }, 1000);
   };
@@ -60,28 +61,46 @@ function startTimer() {
 // hide start button, then show questions and available answer choices
  
 
-  // function render(questionIndex) {
-  //   questionsDiv.innerHTML = "";
-  //   listCreate.innerHTML = "";
-  //   for (var i = 0; i < questions.length; i++) {
-  //     var playerQuestion = questions[questionIndex].title;
-  //     var playerChoices = questions[questionIndex].choices;
-  //     questionsDiv.textContent = playerQuestion;
-  //   };
-  //   playerChoices.forEach(function(newItem) {
-  //     var listItem = document.createElement("li");
-  //     listItem.textContent = newItem;
-  //     questionsDiv.appendChild(listCreate);
-  //     listCreate.appendChild(newItem);
-  //     newItem.addEventListener("click", (check));
-  //   })
-  // };
+  function render() {
+    questionsDiv.innerHTML = "";
+    listCreate.innerHTML = "";
+    for (var i = 0; i < questions.length; i++) {
+      var playerQuestion = questions[questionIndex].title;
+      var playerChoices = questions[questionIndex].choices;
+      questionsDiv.textContent = playerQuestion;
+    };
+    playerChoices.forEach(function(newItem) {
+      var listItem = document.createElement("li");
+      listItem.textContent = newItem;
+      questionsDiv.appendChild(listCreate);
+      listCreate.appendChild(newItem);
+      newItem.addEventListener("click", (check));
+    })
+  };
+
+  // when at end question, call function to end game
 
   startButton.addEventListener("click", function() {
     startTimer();
-    render(questionIndex);
+    // add html hiding function
+    render();
 });
   
+// To begin quiz, hide html first (only want to do this once, so not within the render function) **within eventListener for startButton To do this, I first need to hide the current content on my webpage. *don't use just a string to make the html content go away -- read toggle docm that Amanda sent
+
+// function render to make questions visible. look at toggle documentation; select the first question in my questions variable, index 0,
+
+// function for assessing correct answers an eventListener using Amanda's HTML eventListener documenation to record their choice, compare that with my answer choice. if matches, add html to say "correct", and record points. if doesn't match, add html to say "incorrect", and deduct time. add one each time through to questionIndex and call render again.
+
+// 
+
+
+
+
+
+
+
+
 
 // as user selects answer, hide question/answer, show next question/answer; keeping score with each selection
 // function that shows first question + answer choices; index of questions
