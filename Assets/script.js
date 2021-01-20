@@ -94,7 +94,7 @@ function assess(event) {
   // when at end question, call function to
 
 startButton.addEventListener("click", function() {
-};
+});
   
 // To begin quiz, hide html first (only want to do this once, so not within the render function) **within eventListener for startButton To do this, I first need to hide the current content on my webpage. *don't use just a string to make the html content go away -- read toggle docm that Amanda sent
 
